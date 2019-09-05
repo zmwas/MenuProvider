@@ -1,0 +1,32 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.zack.menuprovider">
+
+    <application android:allowBackup="true"
+                 android:label="@string/app_name"
+                 android:icon="@mipmap/ic_launcher"
+                 android:roundIcon="@mipmap/ic_launcher_round"
+                 android:supportsRtl="true"
+                 android:theme="@style/AppTheme"
+                 android:name=".MenuProvider">
+        <provider android:name=".provider.MenuContentProvider"
+                  android:authorities="com.zack.menuprovider.provider"
+                  android:enabled="true"
+                  android:exported="true"
+        />
+        <service android:name=".MenuProviderService"
+                 android:enabled="true"
+                 android:exported="true"
+        >
+            <intent-filter>
+                <action android:name="com.whatever.myservice.MyService"/>
+            </intent-filter>
+        </service>
+
+        <receiver android:enabled="true" android:name=".StartMenuProviderReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>
