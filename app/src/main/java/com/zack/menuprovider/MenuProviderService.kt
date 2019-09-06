@@ -11,7 +11,6 @@ import android.os.IBinder
 import org.koin.android.ext.android.inject
 
 class MenuProviderService : Service() {
-    val menuItemDao: MenuItemDao by inject()
 
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -42,10 +41,10 @@ class MenuProviderService : Service() {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager;
             val channel = NotificationChannel(
                 notificationChannelId,
-                "Proxy Service channel",
+                "Menu Provider channel",
                 NotificationManager.IMPORTANCE_HIGH
             ).let {
-                it.description = "Proxy server for menu app"
+                it.description = "Menu Provider for menu app"
                 it
             }
             notificationManager.createNotificationChannel(channel)
@@ -58,10 +57,10 @@ class MenuProviderService : Service() {
         ) else Notification.Builder(this)
 
         return builder
-            .setContentTitle("Proxy Server")
-            .setContentText("Proxy server running")
+            .setContentTitle("Menu Provider")
+            .setContentText("Menu provider running")
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setTicker("Proxy server running")
+            .setTicker("Menu provider running")
             .build()
     }
 
